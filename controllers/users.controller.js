@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt');
 const db = require('../db'); // ajusta la ruta si tu estructura es diferente
 
-// =========================
+
 // CREAR USUARIO
-// =========================
+
 exports.createUser = async (req, res) => {
     const { name, last_name, username, email, career_id, password, rol } = req.body;
 
@@ -34,9 +34,8 @@ exports.createUser = async (req, res) => {
     }
 };
 
-// =========================
 // OBTENER TODOS LOS USUARIOS
-// =========================
+
 exports.getAllUsers = (req, res) => {
     db.query("SELECT * FROM users", (err, results) => {
         if (err) return res.status(500).json({ error: err });
@@ -44,9 +43,8 @@ exports.getAllUsers = (req, res) => {
     });
 };
 
-// =========================
 // OBTENER USUARIO POR ID
-// =========================
+
 exports.getUserById = (req, res) => {
     db.query(
         "SELECT * FROM users WHERE id = ?",
@@ -63,9 +61,8 @@ exports.getUserById = (req, res) => {
     );
 };
 
-// =========================
 // FILTRAR USUARIOS
-// =========================
+
 exports.filterUsers = (req, res) => {
     const { name, email, career_id, rol } = req.query;
 
@@ -98,9 +95,8 @@ exports.filterUsers = (req, res) => {
     });
 };
 
-// =========================
 // CAMBIAR ESTADO (ACTIVE)
-// =========================
+
 exports.toggleUserStatus = (req, res) => {
     db.query(
         "UPDATE users SET active = NOT active WHERE id = ?",
@@ -171,9 +167,8 @@ exports.updateUser = async (req, res) => {
     }
 };
 
-// =========================
 // ELIMINAR USUARIO
-// =========================
+
 exports.deleteUser = (req, res) => {
     db.query(
         "DELETE FROM users WHERE id = ?",
